@@ -20,7 +20,7 @@ public class Meteo{
 	private double tauxPluie;							// Le taux de Pluie se calcule en millimètres
 	private double tauxNuage;							// Le taux de Nuages se calcule en pourcentage 
 	private double temperature;							// La température en degré celsius
-	private boolean compositionAir;
+	private boolean compositionAir;							// Savoir si l'air est respirable
 	private double tauxO2;
 	private double tauxAzote;
 	private double tauxAutre;
