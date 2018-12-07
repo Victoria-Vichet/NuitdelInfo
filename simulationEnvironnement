@@ -14,8 +14,139 @@ import java.util.Calendar;
 
 public class MainSimulation{
 
-public static void main (String[] args){
-}
+	public static void main (String[] args){
+		Meteo meteo = new Meteo();
+		Vitale vitale = new Vitale();
+		Date date = new Date(07,12,2018);
+		boolean tempete;
+		boolean brouillard;
+		boolean pluie;
+		boolean jourNuit;
+		boolean viable;
+		boolean cardiaque = false;
+		boolean glycemie = false;
+		boolean tension = false;
+		boolean temperature = false;
+		boolean tauxHydratation = false;
+		boolean etatGeneral = false;
+
+		tempete = false;
+		brouillard = false;
+		pluie = false;
+		int jour = 0;
+		do{
+			date.getTime().actualise();
+			int heure = date.getTime().getHeure();
+    		int minute = date.getTime().getMinute();
+    		int seconde = date.getTime().getSeconde();
+			if(heure == 0 && minute == 0 && seconde == 0){
+				date.demain1();
+				jour++;
+			}
+
+			if (meteo.LeVent() >= 5.5 ){
+				tempete  = true;
+			}
+			if (meteo.LHumidite() >= 50.0 && meteo.LesNuages() <= 10.0){
+				brouillard = true;
+			}
+			if (meteo.LaPluie() != 0.0){
+				pluie = true;
+			}
+			jourNuit = jourNuit(date);
+			viable = meteo.LaCompositionAir();
+
+			if (vitale.Cardiaque() <= 50.0 || vitale.Cardiaque() >= 110.0){
+				cardiaque = true;
+			}
+			if (vitale.Glycemie() <= 0.5 || vitale.Glycemie() >= 1.2){
+				glycemie = true;
+			}
+			if (vitale.TempCorps() <= 35.0 || vitale.TempCorps() >= 39.0){
+				temperature = true;
+			}
+			if (vitale.TauxHydrat() <= 25.0 || vitale.TauxHydrat() >= 75.0){
+				tauxHydratation= true;
+			}
+			if (vitale.PressionHaute() <= 9.0 || vitale.PressionBasse() <= 3.0 || vitale.PressionHaute() >= 18.0 || vitale.PressionBasse() >= 10.0 ){
+				tension= true;
+			}
+
+			if (cardiaque == true || glycemie == true || temperature == true || tauxHydratation == true || tension == true){
+				etatGeneral = true;
+			}
+
+		}while(jour<121);
+	}
+
+  	public static boolean jourNuit(Date date){
+		int heure = date.getTime().getHeure();
+		int minute = date.getTime().getMinute();
+		int seconde = date.getTime().getSeconde();
+		int mois = date.getMois();
+		boolean estJour = false;
+		if(mois == 1){
+			if((heure >= 6 && minute >= 51) && (heure <= 19 && minute <= 58)){
+				estJour = true;
+			}
+		}
+		if(mois == 2){
+			if((heure >= 7 && minute >= 3) && (heure <= 19 && minute <= 52)){
+				estJour = true;
+			}
+		}
+		if(mois == 3){
+			if((heure >= 7 && minute >= 10) && (heure <= 19 && minute <= 31)){
+				estJour = true;
+			}
+		}
+		if(mois == 4){
+			if((heure >= 7 && minute >= 21) && (heure <= 19 && minute <= 0)){
+				estJour = true;
+			}
+		}
+		if(mois == 5){
+			if((heure >= 7 && minute >= 39) && (heure <= 18 && minute <= 38)){
+				estJour = true;
+			}
+		}
+		if(mois == 6){
+			if((heure >= 7 && minute >= 48) && (heure <= 18 && minute <= 33)){
+				estJour = true;
+			}
+		}
+		if(mois == 7){
+			if((heure >= 7 && minute >= 48) && (heure <= 18 && minute <= 43)){
+				estJour = true;
+			}
+		}
+		if(mois == 8){
+			if((heure >= 7 && minute >= 37) && (heure <= 18 && minute <= 51)){
+				estJour = true;
+			}
+		}
+		if(mois == 9){
+			if((heure >= 7 && minute >= 13) && (heure <= 19 && minute <= 2)){
+				estJour = true;
+			}
+		}
+		if(mois == 10){
+			if((heure >= 6 && minute >= 46) && (heure <= 19 && minute <= 16)){
+				estJour = true;
+			}
+		}
+		if(mois == 11){
+			if((heure >= 6 && minute >= 25) && (heure <= 19 && minute <= 39)){
+				estJour = true;
+			}
+		}
+		if(mois == 12){
+			if((heure >= 6 && minute >= 32) && (heure <= 19 && minute <= 56)){
+				estJour = true;
+			}
+		}
+		return estJour;
+	}
+
 
 }
-
