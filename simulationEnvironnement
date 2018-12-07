@@ -36,13 +36,15 @@ public class Meteo{
 	  }
 	}
 
-	 public static double randomMinMax(double min, double max) {
-        double x = (Math.random()*((max-min)+1))+min;
-        double res = Math.round(x * 100.0) / 100.0;
-        return res;
-    }
+	public static double randomMinMax(double min, double max) {
+		double res;
+		do{
+		double x = (Math.random()*((max-min)+1))+min;
+		res = Math.round(x * 100.0) / 100.0;
+		} while (res > max);
+  	}
 
-    public boolean jourNuit(){
+  	public boolean jourNuit(){
 		int heure = this.dateDuJour.heure();
 		int minute = this.dateDuJour.minute();
 		int seconde = this.dateDuJour.seconde();
