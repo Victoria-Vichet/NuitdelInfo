@@ -35,9 +35,9 @@ public class Vitale{
 		this.glycemie = this.Glycemie();
 		this.tempCorps = this.TempCorps();
 		this.tauxHydrat = this.TauxHydrat();
+}
 
-
-public int Cardiaque(){       //Simulation des battements de l'explorateur
+public double Cardiaque(){       //Simulation des battements de l'explorateur
 	double cardiaque;
 	double min;
 	double moy;
@@ -49,7 +49,7 @@ public int Cardiaque(){       //Simulation des battements de l'explorateur
 return cardiaque;
 }
 
-public int PressionHaute(){    //Simulation de la pression systolique de l'explorateur
+public double PressionHaute(){    //Simulation de la pression systolique de l'explorateur
 double pressionH;
 	double min;
 	double moy;
@@ -61,7 +61,7 @@ double pressionH;
 return pressionH;
 }
 
-public int PressionBasse(){    //Simulation de la pression diastolique de l'explorateur
+public double PressionBasse(){    //Simulation de la pression diastolique de l'explorateur
 double pressionB;
 	double min;
 	double moy;
