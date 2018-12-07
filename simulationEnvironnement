@@ -3,9 +3,9 @@ import java.lang.*;
 import java.util.*;
 
 public class Vitale{
-	int cardiaque; //entre 40 et 200 battements par minute  moyenne : 70 bat/min
-	int pressionHaute; //entre 7.0 et 25  moyenne : 12
-	int pressionBasse; //entre 0 et 15  moyenne : 8
+	double cardiaque; //entre 40 et 200 battements par minute  moyenne : 70 bat/min
+	double pressionHaute; //entre 7.0 et 25  moyenne : 12
+	double pressionBasse; //entre 0 et 15  moyenne : 8
 	double glycemie; //entre 0 et 2 g/l  moyenne : 0.85 g/l
 	double tempCoprs; //entre 30 et 45 °C  moyenne : 37 °C
 	double tauxHydrat; //entre 20 et 90 %  moyenne : 55%
