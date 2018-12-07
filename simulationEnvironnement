@@ -276,82 +276,20 @@ public class Meteo{
 		double min;													
 		double moy;	
 		double max;	
-		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-				if (jourNuit() == true){							// true == jour
-				min = 4.17 ;
-				moy = 4.35;
-				max = 4.66;
-				}else{													// false == nuit
-				min = 4.17;
-				moy = 4.35;
-				max = 4.66;
-				}
-		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
-			min = 5.15;
-			moy = 5.39;
-			max = 5.64;
-		}else{												// getSaison == 2 et 2 == Chaude et hummide
-			min = 4.17;
-			moy = 4.56;
-			max = 5.15;
-		}
+		min = 0.0;
+		moy = 21.0;
+		max = 35.0;
 		o2 =  generate(min, max, moy);
 		return o2;
 	}
 
 	public double LAzote (){
-		double azote;
-		double min;													
-		double moy;	
-		double max;	
-		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-				if (jourNuit() == true){							// true == jour
-				min = 4.17 ;
-				moy = 4.35;
-				max = 4.66;
-				}else{													// false == nuit
-				min = 4.17;
-				moy = 4.35;
-				max = 4.66;
-				}
-		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
-			min = 5.15;
-			moy = 5.39;
-			max = 5.64;
-		}else{												// getSaison == 2 et 2 == Chaude et hummide
-			min = 4.17;
-			moy = 4.56;
-			max = 5.15;
-		}
-		azote =  generate(min, max, moy);
-		return azote;
+		return 78.09;
 	}
 
 	public double LAutre (){
 		double autre;
-		double min;													
-		double moy;	
-		double max;	
-		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-				if (jourNuit() == true){							// true == jour
-				min = 4.17 ;
-				moy = 4.35;
-				max = 4.66;
-				}else{													// false == nuit
-				min = 4.17;
-				moy = 4.35;
-				max = 4.66;
-				}
-		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
-			min = 5.15;
-			moy = 5.39;
-			max = 5.64;
-		}else{												// getSaison == 2 et 2 == Chaude et hummide
-			min = 4.17;
-			moy = 4.56;
-			max = 5.15;
-		}
-		autre = generate(min, max, moy);
+		autre = 100 - ( this.tauxAzote + this.tauxO2);
 		return autre;
 	}
 
