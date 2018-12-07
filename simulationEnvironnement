@@ -20,7 +20,7 @@ public class Meteo{
 	private double tauxPluie;							// Le taux de Pluie se calcule en millimètres
 	private double tauxNuage;							// Le taux de Nuages se calcule en pourcentage 
 	private double temperature;							// La température en degré celsius
-	private boolean compositionAir;							// Savoir si l'air est respirable
+	private boolean compositionAir;
 	private double tauxO2;
 	private double tauxAzote;
 	private double tauxAutre;
@@ -45,76 +45,8 @@ public class Meteo{
 		return res;
   	}
 
-  	public boolean jourNuit(){
-		int heure = this.dateDuJour.heure();
-		int minute = this.dateDuJour.minute();
-		int seconde = this.dateDuJour.seconde();
-		int mois = this.dateDuJour.getMois();
-		boolean estJour = false;
-		if(mois == 1){
-			if((heure >= 6 && minute >= 51) && (heure <= 19 && minute <= 58)){
-				estJour = true;
-			}
-		}
-		if(mois == 2){
-			if((heure >= 7 && minute >= 3) && (heure <= 19 && minute <= 52)){
-				estJour = true;
-			}
-		}
-		if(mois == 3){
-			if((heure >= 7 && minute >= 10) && (heure <= 19 && minute <= 31)){
-				estJour = true;
-			}
-		}
-		if(mois == 4){
-			if((heure >= 7 && minute >= 21) && (heure <= 19 && minute <= 0)){
-				estJour = true;
-			}
-		}
-		if(mois == 5){
-			if((heure >= 7 && minute >= 39) && (heure <= 18 && minute <= 38)){
-				estJour = true;
-			}
-		}
-		if(mois == 6){
-			if((heure >= 7 && minute >= 48) && (heure <= 18 && minute <= 33)){
-				estJour = true;
-			}
-		}
-		if(mois == 7){
-			if((heure >= 7 && minute >= 48) && (heure <= 18 && minute <= 43)){
-				estJour = true;
-			}
-		}
-		if(mois == 8){
-			if((heure >= 7 && minute >= 37) && (heure <= 18 && minute <= 51)){
-				estJour = true;
-			}
-		}
-		if(mois == 9){
-			if((heure >= 7 && minute >= 13) && (heure <= 19 && minute <= 2)){
-				estJour = true;
-			}
-		}
-		if(mois == 10){
-			if((heure >= 6 && minute >= 46) && (heure <= 19 && minute <= 16)){
-				estJour = true;
-			}
-		}
-		if(mois == 11){
-			if((heure >= 6 && minute >= 25) && (heure <= 19 && minute <= 39)){
-				estJour = true;
-			}
-		}
-		if(mois == 12){
-			if((heure >= 6 && minute >= 32) && (heure <= 19 && minute <= 56)){
-				estJour = true;
-			}
-		}
-		return estJour;
-	}
 
-	public Meteo (double vent, double humidite, double pluie, double nuage, double soleil){			// constructeur à partir de 5 entiers
+	public Meteo (){			// constructeur à partir de 5 entiers
 		this.tauxVent = this.LeVent();
 		this.tauxHumidite = LHumidite();
 		this.tauxPluie = LaPluie();
@@ -133,7 +65,7 @@ public class Meteo{
 		double moy;											// Valeur moyenne en pourcentage du vent
 		double max;											// Valeur maximale en pourcentage du vent
 		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-			if (jourNuit() == true){								// true == jour
+			/* if (jourNuit() == true){								// true == jour
 				min = 4.17 ;
 				moy = 4.35;
 				max = 4.66;
@@ -141,7 +73,10 @@ public class Meteo{
 				min = 4.17;
 				moy = 4.35;
 				max = 4.66;
-			}
+			} */
+			min = 4.17;
+			moy = 4.35;
+			max = 4.66;			
 		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
 				min = 5.15;
 				moy = 5.39;
