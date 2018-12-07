@@ -28,7 +28,7 @@ public class Vitale{
 		} while (res > max);
 }
 
-	public Vitale(){
+	public Vitale(){ //constructeur
 		this.cardiaque = this.Cardiaque();
 		this.pressionHaute = this.PressionHaute();
 		this.pressionBasse = this.PressionBasse();
