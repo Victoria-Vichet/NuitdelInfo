@@ -17,7 +17,7 @@ public class Meteo{
 
 	private double tauxVent;							// Le vent se calcule en pourcentage 
 	private double tauxHumidite;							// Le taux d'humidité se calcule en pourcentage [correspond au taux d'humidité relatif (voir MétéoFrance pour les incultes)]
-	private double tauxPluie;							// Le taux de Pluie se calcule en pourcentage (voir plus bas)
+	private double tauxPluie;							// Le taux de Pluie se calcule en millimètres
 	private double tauxNuage;							// Le taux de Nuages se calcule en pourcentage 
 	private double temperature;							// La température en degré celsius
 	private boolean compositionAir;
@@ -29,7 +29,7 @@ public class Meteo{
 	/* Génération de nombres aléatoires entre un min un max et une moyenne ayant des probabilités plus fortes d'être autour de la moyenne */
 
 	public static double generate(double min, double max, double moy) {						
-	  if(randomMinMax(0, 65) == 0) {											// 50-100 percentile		
+	  if(randomMinMax(0, 65) == 0) {										// 50-100 percentile		
 	    return randomMinMax(moy, max);
 	    }else{																	// 0-50 percentile
 	    return randomMinMax(min, moy);
@@ -125,25 +125,25 @@ public class Meteo{
 
 	/* Calcul du taux de vent */
 
-	public double LeVent (){											// Le vent est un taux compris entre 0 et 100 où 0 signifie peu de vent et 100 correspond à 408km/h
-		double min;													// Valeur minimale en pourcentage du vent
-		double moy;													// Valeur moyenne en pourcentage du vent
-		double max;													// Valeur maximale en pourcentage du vent
-		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-			if (jourNuit() == true){										// true == jour
+	public double LeVent (){										// Le vent est un taux compris entre 0 et 100 où 0 signifie peu de vent et 100 correspond à 408km/h
+		double min;											// Valeur minimale en pourcentage du vent
+		double moy;											// Valeur moyenne en pourcentage du vent
+		double max;											// Valeur maximale en pourcentage du vent
+		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
+			if (jourNuit() == true){								// true == jour
 				min = 4.17 ;
 				moy = 4.35;
 				max = 4.66;
-			}else{													// false == nuit
+			}else{											// false == nuit
 				min = 4.17;
 				moy = 4.35;
 				max = 4.66;
 			}
-		}else if (this.dateDuJour.getSaison() == 1){						// 1 == Chaude et sèche
+		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
 				min = 5.15;
 				moy = 5.39;
 				max = 5.64;
-		}else{														// getSaison == 2 et 2 == Chaude et hummide
+		}else{												// getSaison == 2 et 2 == Chaude et hummide
 				min = 4.17;
 				moy = 4.56;
 				max = 5.15;
@@ -158,24 +158,18 @@ public class Meteo{
 		double min;
 		double moy;
 		double max;
-		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-				if (jourNuit() == true){				// true == jour
-				min = 4.17 ;
-				moy = 4.35;
-				max = 4.66;
-				}else{													// false == nuit
-				min = 4.17;
-				moy = 4.35;
-				max = 4.66;
-				}
-		}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
-			min = 5.15;
-			moy = 5.39;
-			max = 5.64;
-		}else{														// getSaison == 2 et 2 == Chaude et hummide
-			min = 4.17;
-			moy = 4.56;
-			max = 5.15;
+		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
+			min = 33.0;
+			moy = 37.0;
+			max = 43.0;
+		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
+			min = 48.0;
+			moy = 50.0;
+			max = 51.0;
+		}else{												// getSaison == 2 et 2 == Chaude et hummide
+			min = 38.0;
+			moy = 50.6;
+			max = 60.0;
 		}
 		humidite =  generate(min, max, moy);
 		return humidite;
@@ -192,25 +186,19 @@ public class Meteo{
 		double max;	
 		hum = LHumidite();
 		nuages = LesNuages();
-		if (hum < 50 && nuages <50){									// S'il y a assez d'humidité et de nuages, alors il pleut
+		if (hum > 45 && nuages > 10){									// S'il y a assez d'humidité et de nuages, alors il pleut
 			if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-					if (jourNuit() == true){				// true == jour
-					min = 4.17 ;
-					moy = 4.35;
-					max = 4.66;
-					}else{													// false == nuit
-					min = 4.17;
-					moy = 4.35;
-					max = 4.66;
-					}
-			}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
-				min = 5.15;
-				moy = 5.39;
-				max = 5.64;
-			}else{														// getSaison == 2 et 2 == Chaude et hummide
-				min = 4.17;
-				moy = 4.56;
-				max = 5.15;
+				min = 0.0;
+				moy = 1.0;
+				max = 2.0;
+			}else if (this.dateDuJour.getSaison() == 1){						// 1 == Chaude et sèche
+				min = 1.0;
+				moy = 2.67;
+				max = 4.0;
+			}else{											// getSaison == 2 et 2 == Chaude et hummide
+				min = 2.0;
+				moy = 5.6;
+				max = 8.0;
 			}
 		}else{															// Il ne pleut pas
 			min = 0;
@@ -228,24 +216,18 @@ public class Meteo{
 		double min;													
 		double moy;	
 		double max;	
-		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-				if (jourNuit() == true){				// true == jour
-				min = 4.17 ;
-				moy = 4.35;
-				max = 4.66;
-				}else{													// false == nuit
-				min = 4.17;
-				moy = 4.35;
-				max = 4.66;
-				}
-		}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
-			min = 5.15;
-			moy = 5.39;
-			max = 5.64;
-		}else{														// getSaison == 2 et 2 == Chaude et hummide
-			min = 4.17;
-			moy = 4.56;
-			max = 5.15;
+		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
+			min = 4.3;
+			moy = 5.52;
+			max = 13.0;
+		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
+			min = 11.67;
+			moy = 18.32
+			max = 22.3
+		}else{												// getSaison == 2 et 2 == Chaude et hummide
+			min = 17.67;
+			moy = 24.33
+			max = 31.3;
 		}
 		nuages =  generate(min, max, moy);
 		return nuages;
@@ -258,24 +240,18 @@ public class Meteo{
 		double min;													
 		double moy;	
 		double max;	
-		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-				if (jourNuit() == true){				// true == jour
-				min = 4.17 ;
-				moy = 4.35;
-				max = 4.66;
-				}else{													// false == nuit
-				min = 4.17;
-				moy = 4.35;
-				max = 4.66;
-				}
-		}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
-			min = 5.15;
-			moy = 5.39;
-			max = 5.64;
-		}else{														// getSaison == 2 et 2 == Chaude et hummide
-			min = 4.17;
-			moy = 4.56;
-			max = 5.15;
+		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
+			min = 1.75;
+			moy = 28.0;
+			max = 33.25;
+		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
+			min = 4.66;
+			moy = 33.0;
+			max = 39.0;
+		}else{												// getSaison == 2 et 2 == Chaude et hummide
+			min = 10.8;
+			moy = 34.2;
+			max = 39.4;
 		}
 		temperature =  generate(min, max, moy);
 		return temperature;
@@ -300,8 +276,8 @@ public class Meteo{
 		double min;													
 		double moy;	
 		double max;	
-		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-				if (jourNuit() == true){				// true == jour
+		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
+				if (jourNuit() == true){							// true == jour
 				min = 4.17 ;
 				moy = 4.35;
 				max = 4.66;
@@ -310,11 +286,11 @@ public class Meteo{
 				moy = 4.35;
 				max = 4.66;
 				}
-		}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
+		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
 			min = 5.15;
 			moy = 5.39;
 			max = 5.64;
-		}else{														// getSaison == 2 et 2 == Chaude et hummide
+		}else{												// getSaison == 2 et 2 == Chaude et hummide
 			min = 4.17;
 			moy = 4.56;
 			max = 5.15;
@@ -328,8 +304,8 @@ public class Meteo{
 		double min;													
 		double moy;	
 		double max;	
-		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-				if (jourNuit() == true){				// true == jour
+		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
+				if (jourNuit() == true){							// true == jour
 				min = 4.17 ;
 				moy = 4.35;
 				max = 4.66;
@@ -338,11 +314,11 @@ public class Meteo{
 				moy = 4.35;
 				max = 4.66;
 				}
-		}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
+		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
 			min = 5.15;
 			moy = 5.39;
 			max = 5.64;
-		}else{														// getSaison == 2 et 2 == Chaude et hummide
+		}else{												// getSaison == 2 et 2 == Chaude et hummide
 			min = 4.17;
 			moy = 4.56;
 			max = 5.15;
@@ -356,8 +332,8 @@ public class Meteo{
 		double min;													
 		double moy;	
 		double max;	
-		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-				if (jourNuit() == true){				// true == jour
+		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
+				if (jourNuit() == true){							// true == jour
 				min = 4.17 ;
 				moy = 4.35;
 				max = 4.66;
@@ -366,11 +342,11 @@ public class Meteo{
 				moy = 4.35;
 				max = 4.66;
 				}
-		}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
+		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
 			min = 5.15;
 			moy = 5.39;
 			max = 5.64;
-		}else{														// getSaison == 2 et 2 == Chaude et hummide
+		}else{												// getSaison == 2 et 2 == Chaude et hummide
 			min = 4.17;
 			moy = 4.56;
 			max = 5.15;
