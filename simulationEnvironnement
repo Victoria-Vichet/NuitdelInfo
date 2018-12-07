@@ -1,296 +1,45 @@
-//  _   _       _ _         _        _ _ _        __        _____  _____  __   _____ 
-// | \ | |     (_) |       | |      | ( |_)      / _|      / __  \|  _  |/  | |  _  |
-// |  \| |_   _ _| |_    __| | ___  | |/ _ _ __ | |_ ___   `' / /'| |/' |`| |  \ V / 
-// | . ` | | | | | __|  / _` |/ _ \ | | | | '_ \|  _/ _ \    / /  |  /| | | |  / _ \ 
-// | |\  | |_| | | |_  | (_| |  __/ | | | | | | | || (_) | ./ /___\ |_/ /_| |_| |_| |
-// \_| \_/\__,_|_|\__|  \__,_|\___| |_| |_|_| |_|_| \___/  \_____/ \___/ \___/\_____/
-//
-// Les sPécials
-// V.V
-
-
 import java.util.Scanner; 
 import java.lang.*;
 import java.util.*;
 
-public class Meteo{
+public class Vitale{
+	int cardiaque; //entre 0 et 200 battements par minute  moyenne : 70 bat/min
+	int pressionHaute; //entre 0 et 25  moyenne : 12
+	int pressionBasse; //entre 0 et 15  moyenne : 8
+	double glycemie; //entre 0 et 2 g/l  moyenne : 0.85 g/l
+	double tempCoprs; //entre 30 et 45 °C  moyenne : 37 °C
+	double tauxHydrat; //entre 0 et 100 %  moyenne : 55%
 
-	private double tauxVent;							// Le vent se calcule en pourcentage 
-	private double tauxHumidite;							// Le taux d'humidité se calcule en pourcentage [correspond au taux d'humidité relatif (voir MétéoFrance pour les incultes)]
-	private double tauxPluie;							// Le taux de Pluie se calcule en millimètres
-	private double tauxNuage;							// Le taux de Nuages se calcule en pourcentage 
-	private double temperature;							// La température en degré celsius
-	private boolean compositionAir;
-	private double tauxO2;
-	private double tauxAzote;
-	private double tauxAutre;
-	private Date dateDuJour;							// la date du jour est sous la forme (heure, getSaison)
+	public Vitale(){
+		this.cardiaque = this.Cardiaque();
+		this.pressionHaute = this.PressionHaute();
+		this.pressionBasse = this.PressionBasse();
+		this.glycemie = this.Glycemie();
+		this.tempCorps = this.TempCorps();
+		this.tauxHydrat = this.TauxHydrat();
 
-	/* Génération de nombres aléatoires entre un min un max et une moyenne ayant des probabilités plus fortes d'être autour de la moyenne */
 
-	public static double generate(double min, double max, double moy) {						
-	  if(randomMinMax(0, 65) == 0) {										// 50-100 percentile		
-	    return randomMinMax(moy, max);
-	    }else{																	// 0-50 percentile
-	    return randomMinMax(min, moy);
-	  }
-	}
+public int Cardiaque(){       //Simulation des battements de l'explorateur
 
-	 public static double randomMinMax(double min, double max) {
-        double x = (Math.random()*((max-min)+1))+min;
-        double res = Math.round(x * 100.0) / 100.0;
-        return res;
-    }
+}
 
-    public boolean jourNuit(){
-		int heure = this.dateDuJour.heure();
-		int minute = this.dateDuJour.minute();
-		int seconde = this.dateDuJour.seconde();
-		int mois = this.dateDuJour.getMois();
-		boolean estJour = false;
-		if(mois == 1){
-			if((heure >= 6 && minute >= 51) && (heure <= 19 && minute <= 58)){
-				estJour = true;
-			}
-		}
-		if(mois == 2){
-			if((heure >= 7 && minute >= 3) && (heure <= 19 && minute <= 52)){
-				estJour = true;
-			}
-		}
-		if(mois == 3){
-			if((heure >= 7 && minute >= 10) && (heure <= 19 && minute <= 31)){
-				estJour = true;
-			}
-		}
-		if(mois == 4){
-			if((heure >= 7 && minute >= 21) && (heure <= 19 && minute <= 0)){
-				estJour = true;
-			}
-		}
-		if(mois == 5){
-			if((heure >= 7 && minute >= 39) && (heure <= 18 && minute <= 38)){
-				estJour = true;
-			}
-		}
-		if(mois == 6){
-			if((heure >= 7 && minute >= 48) && (heure <= 18 && minute <= 33)){
-				estJour = true;
-			}
-		}
-		if(mois == 7){
-			if((heure >= 7 && minute >= 48) && (heure <= 18 && minute <= 43)){
-				estJour = true;
-			}
-		}
-		if(mois == 8){
-			if((heure >= 7 && minute >= 37) && (heure <= 18 && minute <= 51)){
-				estJour = true;
-			}
-		}
-		if(mois == 9){
-			if((heure >= 7 && minute >= 13) && (heure <= 19 && minute <= 2)){
-				estJour = true;
-			}
-		}
-		if(mois == 10){
-			if((heure >= 6 && minute >= 46) && (heure <= 19 && minute <= 16)){
-				estJour = true;
-			}
-		}
-		if(mois == 11){
-			if((heure >= 6 && minute >= 25) && (heure <= 19 && minute <= 39)){
-				estJour = true;
-			}
-		}
-		if(mois == 12){
-			if((heure >= 6 && minute >= 32) && (heure <= 19 && minute <= 56)){
-				estJour = true;
-			}
-		}
-		return estJour;
-	}
+public int PressionHaute(){    //Simulation de la pression systolique de l'explorateur
 
-	public Meteo (double vent, double humidite, double pluie, double nuage, double soleil){			// constructeur à partir de 5 entiers
-		this.tauxVent = this.LeVent();
-		this.tauxHumidite = LHumidite();
-		this.tauxPluie = LaPluie();
-		this.tauxNuage = LesNuages();
-		this.temperature = LaTemperature();
-		this.compositionAir = LaCompositionAir();
-		this.tauxO2 = LO2();
-		this.tauxAzote = LAzote();
-		this.tauxAutre = LAutre();
-	}
+}
 
-	/* Calcul du taux de vent */
+public int PressionBasse(){    //Simulation de la pression diastolique de l'explorateur
 
-	public double LeVent (){										// Le vent est un taux compris entre 0 et 100 où 0 signifie peu de vent et 100 correspond à 408km/h
-		double min;											// Valeur minimale en pourcentage du vent
-		double moy;											// Valeur moyenne en pourcentage du vent
-		double max;											// Valeur maximale en pourcentage du vent
-		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-			if (jourNuit() == true){								// true == jour
-				min = 4.17 ;
-				moy = 4.35;
-				max = 4.66;
-			}else{											// false == nuit
-				min = 4.17;
-				moy = 4.35;
-				max = 4.66;
-			}
-		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
-				min = 5.15;
-				moy = 5.39;
-				max = 5.64;
-		}else{												// getSaison == 2 et 2 == Chaude et hummide
-				min = 4.17;
-				moy = 4.56;
-				max = 5.15;
-		}
-		return generate(min, max, moy);
-	}
-	
-	/* Calcul du taux d'humidité */
+}
 
-	public double LHumidite (){										// L'humidité est comprise entre 0 et 100 où 0 signifie 
-		double humidite;
-		double min;
-		double moy;
-		double max;
-		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-			min = 33.0;
-			moy = 37.0;
-			max = 43.0;
-		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
-			min = 48.0;
-			moy = 50.0;
-			max = 51.0;
-		}else{												// getSaison == 2 et 2 == Chaude et hummide
-			min = 38.0;
-			moy = 50.6;
-			max = 60.0;
-		}
-		humidite =  generate(min, max, moy);
-		return humidite;
-	}
+public double Glycemie(){      //Simulation de la glycémie de l'explorateur
 
-	/* Calcul du taux de Pluie */
+}
 
-	public double LaPluie (){
-		double hum;
-		double nuages;
-		double pluie;
-		double min;													
-		double moy;	
-		double max;	
-		hum = LHumidite();
-		nuages = LesNuages();
-		if (hum > 45 && nuages > 10){									// S'il y a assez d'humidité et de nuages, alors il pleut
-			if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-				min = 0.0;
-				moy = 1.0;
-				max = 2.0;
-			}else if (this.dateDuJour.getSaison() == 1){						// 1 == Chaude et sèche
-				min = 1.0;
-				moy = 2.67;
-				max = 4.0;
-			}else{											// getSaison == 2 et 2 == Chaude et hummide
-				min = 2.0;
-				moy = 5.6;
-				max = 8.0;
-			}
-		}else{															// Il ne pleut pas
-			min = 0;
-			moy = 0;
-			max = 0;
-		}
-		pluie =  generate(min, max, moy);
-		return pluie;
-	}
+public double TempCorps(){     //Simulation de la température de l'explorateur
 
-	/* Calcul du taux de Nuages */
+}
 
-	public double LesNuages (){
-		double nuages;
-		double min;													
-		double moy;	
-		double max;	
-		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-			min = 4.3;
-			moy = 5.52;
-			max = 13.0;
-		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
-			min = 11.67;
-			moy = 18.32
-			max = 22.3
-		}else{												// getSaison == 2 et 2 == Chaude et hummide
-			min = 17.67;
-			moy = 24.33
-			max = 31.3;
-		}
-		nuages =  generate(min, max, moy);
-		return nuages;
-	}
+public double TauxHydrat(){     //Simulation du taux d'hydratation de l'explorateur
 
-	/* Calcul des Températures */
-
-	public double LaTemperature (){
-		double temperature;
-		double min;													
-		double moy;	
-		double max;	
-		if (this.dateDuJour.getSaison() == 0){								// 0 == Froide et sèche
-			min = 1.75;
-			moy = 28.0;
-			max = 33.25;
-		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
-			min = 4.66;
-			moy = 33.0;
-			max = 39.0;
-		}else{												// getSaison == 2 et 2 == Chaude et hummide
-			min = 10.8;
-			moy = 34.2;
-			max = 39.4;
-		}
-		temperature =  generate(min, max, moy);
-		return temperature;
-	}
-
-	/* Calcul de la composition de l'air */
-
-	public boolean LaCompositionAir (){
-		boolean viable;
-		double min;													
-		double moy;	
-		double max;	
-		viable = false;
-		if ( this.tauxO2 > 17 ){ 											// si les valeurs sont viables dont égales aux proportions normales alors le booleen devient vrai
-		viable = true ;
-		}
-		return viable;
-	}
-
-	public double LO2 (){
-		double o2;
-		double min;													
-		double moy;	
-		double max;	
-		min = 0.0;
-		moy = 21.0;
-		max = 35.0;
-		o2 =  generate(min, max, moy);
-		return o2;
-	}
-
-	public double LAzote (){
-		return 78.09;
-	}
-
-	public double LAutre (){
-		double autre;
-		autre = 100 - ( this.tauxAzote + this.tauxO2);
-		return autre;
-	}
-
+}
 }
