@@ -166,4 +166,8 @@ public class Date {
 	public int getMois(){
 		return this.mois;
 	}
+	
+	public int getSaison(){
+		return this.saison;
+	}
 }
