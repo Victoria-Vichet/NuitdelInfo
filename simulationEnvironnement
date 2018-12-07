@@ -265,7 +265,7 @@ public class Meteo{
 		double moy;	
 		double max;	
 		viable = false;
-		if ( 1==1 ){ 											// si les valeurs sont viables dont égales aux proportions normales alors le booleen devient vrai
+		if ( this.tauxO2 > 17 ){ 											// si les valeurs sont viables dont égales aux proportions normales alors le booleen devient vrai
 		viable = true ;
 		}
 		return viable;
