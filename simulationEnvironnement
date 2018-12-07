@@ -1,4 +1,33 @@
-public String toString(){
+
+
+import java.util.Scanner; 
+import java.lang.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+public class Heure {
+	private int heure;
+	private int minute;
+	private int seconde;
+
+	/*public void Heure (int h, int m, int s){
+		this.heure=h;
+		this.minute=m;
+		this.seconde=s;
+	}*/
+
+	public Heure (){
+Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        String h = sdf.format(cal.getTime());
+        String str[];
+        str = h.split(":");
+        this.heure = Integer.parseInt(str[0]);
+        this.minute = Integer.parseInt(str[1]);
+        this.seconde = Integer.parseInt(str[2]);
+	}
+
+	public String toString(){
 		return this.heure + ":" + this.minute + ":" + this.seconde;
 	}
 
