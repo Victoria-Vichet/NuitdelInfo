@@ -7,7 +7,7 @@ public class Vitale{
 	private double pressionHaute; //entre 7.0 et 25  moyenne : 12
 	private double pressionBasse; //entre 0 et 15  moyenne : 8
 	private double glycemie; //entre 0 et 2 g/l  moyenne : 0.85 g/l
-	private double tempCoprs; //entre 30 et 45 °C  moyenne : 37 °C
+	private double tempCorps; //entre 30 et 45 °C  moyenne : 37 °C
 	private double tauxHydrat; //entre 20 et 90 %  moyenne : 55%
 
 	/* Génération de nombres aléatoires entre un min un max et une moyenne ayant des probabilités plus fortes d'être autour de la moyenne */
@@ -26,6 +26,7 @@ public class Vitale{
 		double x = (Math.random()*((max-min)+1))+min;
 		res = Math.round(x * 100.0) / 100.0;
 		} while (res > max);
+		return res;
 }
 
 	public Vitale(){ //constructeur
@@ -82,7 +83,7 @@ double glycemie;
 	moy = 0.85;
 	max = 2.0;
 	glycemie =  generate(min, max, moy);
-return glymecie;
+return glycemie;
 }
 
 public double TempCorps(){     //Simulation de la température de l'explorateur
