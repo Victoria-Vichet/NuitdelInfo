@@ -39,7 +39,7 @@ public class Date {
 	this.mois = date.mois;
 	this.annee = date.annee;
 	this.estBissextile = date.estBissextile;
-	this.quelSaison = date.quelSaison;
+	this.saison = date.saison;
     }
 
     public void estBissextile(){
@@ -101,7 +101,6 @@ public class Date {
 			}
 		}while(jour<121);
 }
-    	    }
 
     public void demain1(){
 	this.jour++;
@@ -141,28 +140,6 @@ public class Date {
 	    }
 	}
     }
-
-    public int jourSepare(Date d1){
-	int nbrjour=0;
-	Date d2;
-	int estEgale=this.estEgale(d1);
-	if(estEgale==-1){
-	    d2= new Date(this.jour,this.mois,this.annee);
-		while(estEgale!=0){
-		d2=d2.demain();
-		nbrjour++;
-		estEgale=d2.estEgale(d1);
-		}
-	}else if(estEgale==1){
-	    d2= new Date(d1.jour,d1.mois,d1.annee);
-	    while(estEgale!=0){
-		d2=d2.demain();
-		nbrjour++;
-		estEgale=this.estEgale(d2);
-	    }
-	}
-	return nbrjour;
-	}
 
 	public void quelSaison(){
 		if(3<=this.mois && this.mois<9){
