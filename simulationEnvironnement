@@ -225,11 +225,11 @@ public class Meteo{
 			max = 13.0;
 		}else if (this.dateDuJour.getSaison() == 1){							// 1 == Chaude et sèche
 			min = 11.67;
-			moy = 18.32
-			max = 22.3
+			moy = 18.32;
+			max = 22.3;
 		}else{												// getSaison == 2 et 2 == Chaude et hummide
 			min = 17.67;
-			moy = 24.33
+			moy = 24.33;
 			max = 31.3;
 		}
 		nuages =  generate(min, max, moy);
