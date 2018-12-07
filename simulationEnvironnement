@@ -42,6 +42,7 @@ public class Meteo{
 		double x = (Math.random()*((max-min)+1))+min;
 		res = Math.round(x * 100.0) / 100.0;
 		} while (res > max);
+		return res;
   	}
 
   	public boolean jourNuit(){
