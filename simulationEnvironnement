@@ -3,12 +3,12 @@ import java.lang.*;
 import java.util.*;
 
 public class Vitale{
-	int cardiaque; //entre 0 et 200 battements par minute  moyenne : 70 bat/min
-	int pressionHaute; //entre 0 et 25  moyenne : 12
+	int cardiaque; //entre 40 et 200 battements par minute  moyenne : 70 bat/min
+	int pressionHaute; //entre 7.0 et 25  moyenne : 12
 	int pressionBasse; //entre 0 et 15  moyenne : 8
 	double glycemie; //entre 0 et 2 g/l  moyenne : 0.85 g/l
 	double tempCoprs; //entre 30 et 45 °C  moyenne : 37 °C
-	double tauxHydrat; //entre 0 et 100 %  moyenne : 55%
+	double tauxHydrat; //entre 20 et 90 %  moyenne : 55%
 
 	public Vitale(){
 		this.cardiaque = this.Cardiaque();
@@ -20,26 +20,74 @@ public class Vitale{
 
 
 public int Cardiaque(){       //Simulation des battements de l'explorateur
-
+	double cardiaque;
+	double min;
+	double moy;
+	double max;								
+	min = 40.0;
+	moy = 70.0;
+	max = 200.0;
+	cardiaque =  generate(min, max, moy);
+return cardiaque;
 }
 
 public int PressionHaute(){    //Simulation de la pression systolique de l'explorateur
-
+double pressionH;
+	double min;
+	double moy;
+	double max;												
+	min = 7.0;
+	moy = 12.0;
+	max = 25.0;
+	pressionH =  generate(min, max, moy);
+return pressionH;
 }
 
 public int PressionBasse(){    //Simulation de la pression diastolique de l'explorateur
-
+double pressionB;
+	double min;
+	double moy;
+	double max;												
+	min = 0.0;
+	moy = 8.0;
+	max = 15.0;
+	pressionB =  generate(min, max, moy);
+return pressionB;
 }
 
 public double Glycemie(){      //Simulation de la glycémie de l'explorateur
-
+double glycemie;
+	double min;
+	double moy;
+	double max;												
+	min = 0.0;
+	moy = 0.85;
+	max = 2.0;
+	glycemie =  generate(min, max, moy);
+return glymecie;
 }
 
 public double TempCorps(){     //Simulation de la température de l'explorateur
-
+double temperature;
+	double min;
+	double moy;
+	double max;												
+	min = 30.0;
+	moy = 37.0;
+	max = 45.0;
+	temperature =  generate(min, max, moy);
+return temperature;
 }
 
 public double TauxHydrat(){     //Simulation du taux d'hydratation de l'explorateur
-
+double hydratation;
+	double min;
+	double moy;
+	double max;												
+	min = 20.0;
+	moy = 55.0;
+	max = 90.0;
+	hydratation =  generate(min, max, moy);
+return hydratation;
 }
 }
