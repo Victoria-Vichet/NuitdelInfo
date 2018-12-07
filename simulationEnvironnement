@@ -16,7 +16,7 @@ import java.util.*;
 public class Meteo{
 
 	private double tauxVent;							// Le vent se calcule en pourcentage 
-	private double tauxHumidite;						// Le taux d'humidité se calcule en pourcentage [correspond au taux d'humidité relatif (voir MétéoFrance pour les incultes)]
+	private double tauxHumidite;							// Le taux d'humidité se calcule en pourcentage [correspond au taux d'humidité relatif (voir MétéoFrance pour les incultes)]
 	private double tauxPluie;							// Le taux de Pluie se calcule en pourcentage (voir plus bas)
 	private double tauxNuage;							// Le taux de Nuages se calcule en pourcentage 
 	private double temperature;							// La température en degré celsius
@@ -130,7 +130,7 @@ public class Meteo{
 		double moy;													// Valeur moyenne en pourcentage du vent
 		double max;													// Valeur maximale en pourcentage du vent
 		if (this.dateDuJour.getSaison() == 0){							// 0 == Froide et sèche
-			if (jourNuit() == true){				// true == jour
+			if (jourNuit() == true){										// true == jour
 				min = 4.17 ;
 				moy = 4.35;
 				max = 4.66;
@@ -139,7 +139,7 @@ public class Meteo{
 				moy = 4.35;
 				max = 4.66;
 			}
-		}else if (this.dateDuJour.getSaison() == 1){					// 1 == Chaude et sèche
+		}else if (this.dateDuJour.getSaison() == 1){						// 1 == Chaude et sèche
 				min = 5.15;
 				moy = 5.39;
 				max = 5.64;
